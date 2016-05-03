@@ -71,8 +71,9 @@
   (when (not (package-installed-p p))
   (package-install p)))
 
-(require 'solarized-theme)
+(require 'solarized)
 (when window-system (load-theme 'solarized-dark t))
+(when (not window-system) (load-theme 'tango-dark t))
 
 (require 'evil)
 (evil-mode 1)
@@ -86,6 +87,7 @@
 
 (require 'rainbow-delimiters)
 (add-hook 'paredit-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'rust-mode-hook #'rainbow-delimiters-mode)
 
 (require 'company)
 (add-hook 'after-init-hook #'global-company-mode)
@@ -93,13 +95,12 @@
 (tool-bar-mode 0)
 
 (when window-system (set-frame-font "-PfEd-Ricty Diminished Discord-normal-normal-normal-*-*-*-*-*-*-0-iso10646-1") (set-frame-size (selected-frame) 120 45))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+ '(initial-buffer-choice t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
