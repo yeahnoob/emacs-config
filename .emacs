@@ -87,6 +87,7 @@
 
 (require 'rainbow-delimiters)
 (add-hook 'paredit-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'rust-mode-hook #'rainbow-delimiters-mode)
 
 (require 'company)
 (add-hook 'after-init-hook #'global-company-mode)
