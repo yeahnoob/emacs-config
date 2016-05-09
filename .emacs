@@ -1,6 +1,8 @@
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'default-frame-alist
+	     '(font . "Ricty Diminished Discord-12"))
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -12,7 +14,6 @@
       epl
       dash
 
-      solarized-theme
       paredit
       autopair
       rainbow-delimiters
@@ -71,8 +72,8 @@
   (when (not (package-installed-p p))
   (package-install p)))
 
-(require 'solarized-theme)
-(when window-system (load-theme 'solarized-dark t))
+(when window-system (load-theme 'tango t))
+(when (not window-system) (load-theme 'tango t))
 
 (require 'evil)
 (evil-mode 1)
@@ -92,7 +93,7 @@
 
 (tool-bar-mode 0)
 
-(when window-system (set-frame-font "-PfEd-Ricty Diminished Discord-normal-normal-normal-*-*-*-*-*-*-0-iso10646-1") (set-frame-size (selected-frame) 120 45))
+(when window-system (set-frame-size (selected-frame) 123 55))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
