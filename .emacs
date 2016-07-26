@@ -36,6 +36,7 @@
       web-completion-data
       web-beautify
       tagedit
+      typescript-mode
 
       jq-mode
 
@@ -64,7 +65,9 @@
       company
       company-web
       company-racer
-      company-go))
+      company-go
+
+      ))
 
 (dolist (p my-packages-list)
   (when (not (package-installed-p p))
@@ -90,15 +93,27 @@
 (require 'company)
 (add-hook 'after-init-hook #'global-company-mode)
 
+(add-to-list 'load-path "~/st/go-zone/workspace/src/github.com/dougm/goflymake")
+(require 'go-flymake)
+(require 'go-flycheck)
+
 (require 'flymake-easy)
 (require 'flymake-rust)
 (add-hook 'rust-mode-hook 'flymake-rust-load)
-(add-hook 'go-mode-hook 'flymake-go-load)
-
-(add-hook 'rust-mode-hook #'rustfmt-enable-on-save)
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'rust-mode-hook #'eldoc-mode)
+(add-hook 'rust-mode-hook 'rustfmt-enable-on-save)
+(add-hook 'rust-mode-hook 'racer-mode)
+(add-hook 'rust-mode-hook 'eldoc-mode)
 (setq company-tooltip-align-annotations t)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '(".as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 
 (tool-bar-mode 0)
 
